@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="vol-up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 144 144">
+  <defs>
+    <style>
+      .g {
+        fill: url(#c);
+      }
+
+      .h {
+        fill: url(#d);
+      }
+
+      .i {
+        fill: url(#e);
+      }
+
+      .j {
+        fill: url(#f);
+      }
+
+      .k {
+        fill: url(#b);
+      }
+    </style>
+    <linearGradient id="b" data-name="Безымянный градиент" x1="-181.23" y1="327.73" x2="-181.23" y2="326.73" gradientTransform="translate(26169 47193) scale(144 -144)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#374151"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="c" data-name="Безымянный градиент 2" x1="16.91" y1="112.62" x2="89.06" y2="40.48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="1" stop-color="#29b6f6"/>
+    </linearGradient>
+    <linearGradient id="d" data-name="Безымянный градиент 3" x1="-459.04" y1="317.16" x2="-458.8" y2="316.92" gradientTransform="translate(2845 15291) scale(6 -48)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="1" stop-color="#29b6f6"/>
+    </linearGradient>
+    <linearGradient id="e" data-name="Безымянный градиент 4" x1="-489.49" y1="320.96" x2="-489.28" y2="320.75" gradientTransform="translate(4508 23175) scale(9 -72)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="1" stop-color="#29b6f6"/>
+    </linearGradient>
+    <linearGradient id="f" data-name="Безымянный градиент 5" x1="-489.06" y1="321.9" x2="-488.85" y2="321.69" gradientTransform="translate(4508 23175) scale(9 -72)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="1" stop-color="#29b6f6"/>
+    </linearGradient>
+  </defs>
+  <rect class="k" width="144" height="144" rx="35" ry="35"/>
+  <path class="g" d="M72.55,27.25c-.8,0-1.5.3-2.2.7l-28,21.9h-22c-2.2,0-4,1.8-4,4v36c0,2.2,1.8,4,4,4h22l28,22c1.5,1.2,3.7.9,4.9-.6.5-.6.7-1.4.7-2.2V30.65c0-1.9-1.5-3.4-3.4-3.4ZM41.14,69.45c-.14.38-.51.62-.89.62-.11,0-.22-.02-.33-.06-1.82-.68-3.44-1.72-4.79-3.08-.69-.7-1.31-1.48-1.83-2.32v15.6c0,2.9-2.35,5.24-5.24,5.24s-5.24-2.35-5.24-5.24,2.35-5.24,5.24-5.24c1.3.17,2.49.81,3.34,1.81v-17.26h.02c0-.45.31-.86.77-.94.52-.09,1.01.26,1.1.77.24,1.37.98,4.01,3.2,6.24,1.16,1.16,2.54,2.05,4.11,2.64.49.18.74.73.56,1.23Z"/>
+  <path class="h" d="M89.65,99.42c-.67,0-1.34-.19-1.94-.59-1.61-1.07-2.04-3.25-.97-4.85,7.28-10.93,7.28-33.19,0-44.12-1.07-1.61-.64-3.78.97-4.85s3.78-.64,4.85.97c8.73,13.09,8.73,38.79,0,51.88-.67,1.01-1.78,1.56-2.92,1.56h.01Z"/>
+  <path class="i" d="M100.76,111.42c-.67,0-1.34-.19-1.94-.59-1.61-1.07-2.04-3.25-.97-4.85,11.25-16.87,11.25-51.25,0-68.12-1.07-1.61-.64-3.78.97-4.85s3.78-.64,4.85.97c12.77,19.15,12.77,56.73,0,75.88-.67,1.01-1.78,1.56-2.92,1.56h.01Z"/>
+  <path class="j" d="M112.14,123.42c-.67,0-1.34-.19-1.94-.59-1.61-1.07-2.04-3.25-.97-4.85,15.2-22.8,15.2-69.3,0-92.1-1.07-1.61-.64-3.78.97-4.85s3.78-.64,4.85.97c16.8,25.2,16.8,74.8,0,100-.67,1.01-1.78,1.56-2.92,1.56v-.14Z"/>
+</svg>

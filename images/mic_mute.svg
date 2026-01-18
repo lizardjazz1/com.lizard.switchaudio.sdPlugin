@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="mic_x5F_mute" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 144 144">
+  <defs>
+    <style>
+      .d {
+        fill: #4a6a8a;
+        isolation: isolate;
+        opacity: .6;
+      }
+
+      .e {
+        fill: none;
+        stroke: url(#c);
+        stroke-linecap: round;
+        stroke-width: 9px;
+      }
+
+      .f {
+        fill: url(#b);
+      }
+    </style>
+    <linearGradient id="b" data-name="Безымянный градиент" x1="-181.73" y1="327.73" x2="-180.73" y2="326.73" gradientTransform="translate(26169 47193) scale(144 -144)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e3a5f"/>
+      <stop offset="1" stop-color="#0d2137"/>
+    </linearGradient>
+    <linearGradient id="c" data-name="Безымянный градиент 10" x1="-180.82" y1="326.82" x2="-179.82" y2="325.82" gradientTransform="translate(15219 27483) scale(84 -84)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff8a80"/>
+      <stop offset="1" stop-color="#d32f2f"/>
+    </linearGradient>
+  </defs>
+  <rect class="f" x="0" y="0" width="144" height="144" rx="35" ry="35"/>
+  <path class="d" d="M72,24h0c11.05,0,20,8.95,20,20v20c0,11.05-8.95,20-20,20h0c-11.05,0-20-8.95-20-20v-20c0-11.05,8.95-20,20-20Z"/>
+  <path class="d" d="M106,56.5c-1.93,0-3.5,1.57-3.5,3.5v14c0,16.82-13.68,30.5-30.5,30.5s-30.5-13.68-30.5-30.5v-14c0-1.93-1.57-3.5-3.5-3.5s-3.5,1.57-3.5,3.5v14c0,19.5,14.96,35.56,34,37.33v9.17h-16.5c-1.93,0-3.5,1.57-3.5,3.5s1.57,3.5,3.5,3.5h40c1.93,0,3.5-1.57,3.5-3.5s-1.57-3.5-3.5-3.5h-16.5v-9.17c19.04-1.77,34-17.83,34-37.33v-14c0-1.93-1.57-3.5-3.5-3.5Z"/>
+  <line class="e" x1="30" y1="30" x2="114" y2="114"/>
+</svg>

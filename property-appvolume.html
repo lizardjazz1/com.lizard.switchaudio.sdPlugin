@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>App Volume Settings</title>
+    <style>
+        * { box-sizing: border-box; user-select: none; outline: none; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 11px;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 12px;
+            width: 438px;
+            height: 195px;
+        }
+        .container { display: none; flex-direction: column; gap: 12px; }
+        .input-group { display: flex; flex-direction: column; gap: 6px; }
+        .input-label { font-weight: 500; color: #ddd; }
+        input[type="text"] {
+            width: 100%;
+            height: 28px;
+            padding: 0 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 11px;
+            font-family: inherit;
+        }
+        input[type="text"]:focus { border-color: #4fc3f7; }
+        input[type="text"]::placeholder { color: #888; }
+        .hint {
+            font-size: 10px;
+            color: #aaa;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 10px;
+            color: #aaa;
+            line-height: 1.4;
+        }
+        .loading {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="input-group">
+            <label class="input-label" id="processNameLabel">Process Name (optional):</label>
+            <input type="text" id="processName" placeholder="Spotify, Discord, chrome, etc.">
+            <span class="hint" id="processNameHint">If empty, controls the focused application. If specified, controls this process by name (without .exe)</span>
+        </div>
+        <div class="info" id="infoText">
+            Controls the volume of a specific application. Works even if the application is not in focus when process name is specified.
+        </div>
+    </div>
+    <div class="loading" id="loading">Loading...</div>
+
+    <script>
+        let websocket = null, uuid = null, actionInfo = null, settings = {}, language = 'en';
+
+        const localization = {
+            en: {
+                processNameLabel: 'Process Name (optional):',
+                placeholder: 'Spotify, Discord, chrome, etc.',
+                hint: 'If empty, controls the focused application. If specified, controls this process by name (without .exe)',
+                info: 'Controls the volume of a specific application. Works even if the application is not in focus when process name is specified.',
+                loading: 'Loading...'
+            },
+            ru: {
+                processNameLabel: 'Имя процесса (опционально):',
+                placeholder: 'Spotify, Discord, chrome и т.д.',
+                hint: 'Если пусто, управляет активным приложением. Если указано, управляет процессом по имени (без .exe)',
+                info: 'Управляет громкостью конкретного приложения. Работает даже если приложение не в фокусе, когда указано имя процесса.',
+                loading: 'Загрузка...'
+            },
+            zh: {
+                processNameLabel: '进程名称（可选）:',
+                placeholder: 'Spotify, Discord, chrome 等',
+                hint: '如果为空，控制焦点应用程序。如果指定，按名称控制此进程（不带 .exe）',
+                info: '控制特定应用程序的音量。当指定进程名称时，即使应用程序不在焦点中也能工作。',
+                loading: '加载中...'
+            }
+        };
+
+        const els = {
+            main: document.getElementById('main'),
+            loading: document.getElementById('loading'),
+            processNameLabel: document.getElementById('processNameLabel'),
+            processName: document.getElementById('processName'),
+            processNameHint: document.getElementById('processNameHint'),
+            infoText: document.getElementById('infoText')
+        };
+
+        function setLanguage(langCode) {
+            langCode = (langCode || 'en').toLowerCase();
+            language = langCode.startsWith('ru') ? 'ru' : langCode.startsWith('zh') ? 'zh' : 'en';
+            const loc = localization[language];
+            els.processNameLabel.textContent = loc.processNameLabel;
+            els.processName.placeholder = loc.placeholder;
+            els.processNameHint.textContent = loc.hint;
+            els.infoText.textContent = loc.info;
+            els.loading.textContent = loc.loading;
+        }
+
+        function updateUIFromSettings() {
+            els.processName.value = settings.processName || '';
+        }
+
+        function connectElgatoStreamDeckSocket(port, propertyInspectorUUID, registerEvent, info, actionInfoStr) {
+            uuid = propertyInspectorUUID;
+            actionInfo = JSON.parse(actionInfoStr);
+            settings = actionInfo.payload.settings || {};
+
+            try {
+                const infoObj = JSON.parse(info);
+                setLanguage(infoObj.application?.language || navigator.language);
+            } catch (e) {
+                setLanguage(navigator.language);
+            }
+
+            updateUIFromSettings();
+
+            websocket = new WebSocket('ws://127.0.0.1:' + port);
+            websocket.onopen = function() {
+                websocket.send(JSON.stringify({ event: registerEvent, uuid: uuid }));
+                els.loading.style.display = 'none';
+                els.main.style.display = 'flex';
+            };
+            websocket.onmessage = function(evt) {
+                try {
+                    const data = JSON.parse(evt.data);
+                    if (data.event === 'didReceiveSettings') {
+                        settings = data.payload.settings || {};
+                        updateUIFromSettings();
+                    }
+                } catch (e) {}
+            };
+        }
+
+        function saveSettings() {
+            settings.processName = els.processName.value.trim() || '';
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+                websocket.send(JSON.stringify({ event: 'setSettings', context: uuid, payload: settings }));
+            }
+        }
+
+        els.processName.addEventListener('change', saveSettings);
+        els.processName.addEventListener('blur', saveSettings);
+    </script>
+</body>
+</html>

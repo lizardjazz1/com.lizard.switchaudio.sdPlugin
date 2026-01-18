@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 144 144">
+  <defs>
+    <style>
+      .d {
+        fill: url(#c);
+        isolation: isolate;
+        opacity: .9;
+      }
+
+      .e {
+        fill: #2d2d2d;
+      }
+
+      .f {
+        fill: #ff5252;
+      }
+
+      .g {
+        fill: url(#b);
+      }
+    </style>
+    <linearGradient id="b" data-name="Безымянный градиент" x1="-181.73" y1="327.73" x2="-180.73" y2="326.73" gradientTransform="translate(26169 47193) scale(144 -144)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a1a2e"/>
+      <stop offset="1" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="c" data-name="Безымянный градиент 2" x1="-178.64" y1="326.2" x2="-177.64" y2="325.2" gradientTransform="translate(7643.85 20856.88) scale(42.58 -63.83)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="1" stop-color="#0288d1"/>
+    </linearGradient>
+  </defs>
+  <rect class="g" width="144" height="144" rx="35" ry="35"/>
+  <path class="e" d="M34,116h76c2.21,0,4,1.79,4,4h0c0,2.21-1.79,4-4,4H34c-2.21,0-4-1.79-4-4h0c0-2.21,1.79-4,4-4Z"/>
+  <path class="d" d="M34.71,59.09v25.72c0,1.57,1.29,2.86,2.86,2.86h15.72l20,15.72c1.07.86,2.64.64,3.5-.43.36-.43.5-1,.5-1.57v-58.87c0-1.36-1.07-2.43-2.43-2.43-.57,0-1.07.21-1.57.5l-20,15.65h-15.72c-1.57,0-2.86,1.29-2.86,2.86h0Z"/>
+  <path class="f" d="M101.18,72l11.31-12.67c.74-.82.66-2.09-.16-2.82-.83-.74-2.09-.66-2.82.16l-11.01,12.33-11.01-12.33c-.74-.82-2-.9-2.82-.16-.82.74-.9,2-.16,2.82l11.31,12.67-11.31,12.67c-.74.82-.66,2.09.16,2.82.38.34.86.51,1.33.51.55,0,1.1-.23,1.49-.67l11.01-12.33,11.01,12.33c.4.44.94.67,1.49.67.47,0,.95-.17,1.33-.51.82-.74.9-2,.16-2.82l-11.31-12.67Z"/>
+</svg>

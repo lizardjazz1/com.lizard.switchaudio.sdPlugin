@@ -1,0 +1,58 @@
+{
+  "Name": "Audio Switch Pro",
+  "Description": "一键切换默认和通讯音频设备（设置通话、Discord、Teams等的设备）",
+  "Category": "音频",
+  "com.lizard.switchaudio.toggle": {
+    "Name": "音频切换",
+    "Tooltip": "在两个音频设备之间切换（默认 + 通讯）"
+  },
+  "com.lizard.switchaudio.mute": {
+    "Name": "静音切换",
+    "Tooltip": "切换系统音量静音/取消静音"
+  },
+  "com.lizard.switchaudio.volumeup": {
+    "Name": "音量增加",
+    "Tooltip": "增加系统音量"
+  },
+  "com.lizard.switchaudio.volumedown": {
+    "Name": "音量减少",
+    "Tooltip": "减少系统音量"
+  },
+  "com.lizard.switchaudio.appvolumeup": {
+    "Name": "应用音量增加",
+    "Tooltip": "增加活动应用音量"
+  },
+  "com.lizard.switchaudio.appvolumedown": {
+    "Name": "应用音量减少",
+    "Tooltip": "减少活动应用音量"
+  },
+  "com.lizard.switchaudio.setvolume": {
+    "Name": "设置音量",
+    "Tooltip": "将系统音量设置为特定级别"
+  },
+  "com.lizard.switchaudio.playpause": {
+    "Name": "播放/暂停",
+    "Tooltip": "切换播放/暂停"
+  },
+  "com.lizard.switchaudio.medianext": {
+    "Name": "下一曲",
+    "Tooltip": "跳到下一曲"
+  },
+  "com.lizard.switchaudio.mediaprev": {
+    "Name": "上一曲",
+    "Tooltip": "返回上一曲"
+  },
+  "com.lizard.switchaudio.pushtotalk": {
+    "Name": "按键通话",
+    "Tooltip": "按住取消静音，松开静音"
+  },
+  "com.lizard.switchaudio.soundsettings": {
+    "Name": "声音设置",
+    "Tooltip": "打开Windows声音设置"
+  },
+  "Localization": {
+    "Primary Device": "主要设备",
+    "Secondary Device": "次要设备",
+    "Refresh Devices": "刷新设备"
+  }
+}
