@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Push to Talk</title>
+    <style>
+        * { box-sizing: border-box; user-select: none; outline: none; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 11px;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 12px;
+            width: 438px;
+            height: 195px;
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 16px;
+            font-size: 11px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+        .info h3 {
+            color: #4fc3f7;
+            margin: 0 0 10px 0;
+            font-size: 13px;
+        }
+        .warning {
+            background: rgba(255, 152, 0, 0.15);
+            border: 1px solid rgba(255, 152, 0, 0.3);
+            border-radius: 6px;
+            padding: 10px;
+            margin-top: 12px;
+            font-size: 10px;
+            color: #ffb74d;
+        }
+    </style>
+</head>
+<body>
+    <div class="info" id="infoText">
+        <h3 id="title">Push to Talk</h3>
+        <span id="desc">Hold the button to unmute your microphone. Release to mute again. Perfect for Discord, Teams, and other voice apps.</span>
+    </div>
+    <div class="warning" id="warning">Note: Some devices (like Ajazz) don't support button hold detection. PTT may not work correctly on these devices.</div>
+
+    <script>
+        const localization = {
+            en: {
+                title: 'Push to Talk',
+                desc: 'Hold the button to unmute your microphone. Release to mute again. Perfect for Discord, Teams, and other voice apps.',
+                warning: 'Note: Some devices (like Ajazz) don\'t support button hold detection. PTT may not work correctly on these devices.'
+            },
+            ru: {
+                title: 'Push to Talk',
+                desc: 'Удерживайте кнопку чтобы говорить. Отпустите — микрофон замьютится. Идеально для Discord, Teams и других голосовых приложений.',
+                warning: 'Внимание: Некоторые устройства (например Ajazz) не поддерживают удержание кнопки. PTT может не работать на таких устройствах.'
+            },
+            zh: {
+                title: '按键通话',
+                desc: '按住按钮取消静音麦克风。松开后静音。非常适合 Discord、Teams 和其他语音应用。',
+                warning: '注意：某些设备（如 Ajazz）不支持按钮按住检测。PTT 可能无法在这些设备上正常工作。'
+            }
+        };
+
+        function connectElgatoStreamDeckSocket(port, propertyInspectorUUID, registerEvent, info) {
+            let language = 'en';
+            try {
+                const infoObj = JSON.parse(info);
+                const langCode = (infoObj.application?.language || navigator.language || 'en').toLowerCase();
+                language = langCode.startsWith('ru') ? 'ru' : langCode.startsWith('zh') ? 'zh' : 'en';
+            } catch (e) {}
+
+            const loc = localization[language];
+            document.getElementById('title').textContent = loc.title;
+            document.getElementById('desc').textContent = loc.desc;
+            document.getElementById('warning').textContent = loc.warning;
+
+            const websocket = new WebSocket('ws://127.0.0.1:' + port);
+            websocket.onopen = function() {
+                websocket.send(JSON.stringify({ event: registerEvent, uuid: propertyInspectorUUID }));
+            };
+        }
+    </script>
+</body>
+</html>

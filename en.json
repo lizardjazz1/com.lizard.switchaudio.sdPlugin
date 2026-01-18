@@ -1,0 +1,58 @@
+{
+  "Name": "Audio Switch Pro",
+  "Description": "Switch both Default and Communication audio devices with one click (sets device for calls, Discord, Teams, etc.)",
+  "Category": "Audio",
+  "com.lizard.switchaudio.toggle": {
+    "Name": "Audio Switch",
+    "Tooltip": "Toggle between two audio devices (Default + Communication)"
+  },
+  "com.lizard.switchaudio.mute": {
+    "Name": "Mute Toggle",
+    "Tooltip": "Toggle mute/unmute system volume"
+  },
+  "com.lizard.switchaudio.volumeup": {
+    "Name": "Volume Up",
+    "Tooltip": "Increase system volume"
+  },
+  "com.lizard.switchaudio.volumedown": {
+    "Name": "Volume Down",
+    "Tooltip": "Decrease system volume"
+  },
+  "com.lizard.switchaudio.appvolumeup": {
+    "Name": "App Volume Up",
+    "Tooltip": "Increase focused application volume"
+  },
+  "com.lizard.switchaudio.appvolumedown": {
+    "Name": "App Volume Down",
+    "Tooltip": "Decrease focused application volume"
+  },
+  "com.lizard.switchaudio.setvolume": {
+    "Name": "Set Volume",
+    "Tooltip": "Set system volume to specific level"
+  },
+  "com.lizard.switchaudio.playpause": {
+    "Name": "Play / Pause",
+    "Tooltip": "Toggle media play/pause"
+  },
+  "com.lizard.switchaudio.medianext": {
+    "Name": "Next Track",
+    "Tooltip": "Skip to next track"
+  },
+  "com.lizard.switchaudio.mediaprev": {
+    "Name": "Previous Track",
+    "Tooltip": "Go to previous track"
+  },
+  "com.lizard.switchaudio.pushtotalk": {
+    "Name": "Push to Talk",
+    "Tooltip": "Hold to unmute, release to mute"
+  },
+  "com.lizard.switchaudio.soundsettings": {
+    "Name": "Sound Settings",
+    "Tooltip": "Open Windows sound settings"
+  },
+  "Localization": {
+    "Primary Device": "Primary Device",
+    "Secondary Device": "Secondary Device",
+    "Refresh Devices": "Refresh Devices"
+  }
+}

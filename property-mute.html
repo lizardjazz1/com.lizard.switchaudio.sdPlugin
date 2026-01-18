@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mute Toggle Settings</title>
+    <style>
+        * { box-sizing: border-box; user-select: none; outline: none; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 11px;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 12px;
+            width: 438px;
+            height: 195px;
+        }
+        .container { display: none; flex-direction: column; gap: 12px; }
+        .radio-group { display: flex; align-items: center; gap: 12px; }
+        .radio-label { font-weight: 500; color: #ddd; min-width: 100px; }
+        .radio-options { display: flex; gap: 8px; }
+        .radio-option input[type="radio"] { display: none; }
+        .radio-option label {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 11px;
+            color: #ccc;
+        }
+        .radio-option input[type="radio"]:checked + label {
+            background: #4fc3f7;
+            border-color: #4fc3f7;
+            color: #fff;
+        }
+        .radio-option label:hover { border-color: rgba(255, 255, 255, 0.3); }
+        .info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 10px;
+            color: #aaa;
+            line-height: 1.5;
+        }
+        .loading {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="radio-group">
+            <label class="radio-label" id="muteTypeLabel">Mute Type:</label>
+            <div class="radio-options">
+                <div class="radio-option">
+                    <input type="radio" id="muteTypeSystem" name="muteType" value="system" checked>
+                    <label for="muteTypeSystem" id="muteTypeSystemLabel">System Volume</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="muteTypeMicrophone" name="muteType" value="microphone">
+                    <label for="muteTypeMicrophone" id="muteTypeMicrophoneLabel">Microphone</label>
+                </div>
+            </div>
+        </div>
+        <div class="info" id="infoText">
+            System Volume: Mutes/unmutes the default playback device (speakers/headphones).<br>
+            Microphone: Mutes/unmutes the default recording device (microphone).
+        </div>
+    </div>
+    <div class="loading" id="loading">Loading...</div>
+
+    <script>
+        let websocket = null, uuid = null, actionInfo = null, settings = {}, language = 'en';
+
+        const localization = {
+            en: {
+                muteType: 'Mute Type:',
+                system: 'System Volume',
+                microphone: 'Microphone',
+                info: 'System Volume: Mutes/unmutes the default playback device (speakers/headphones).<br>Microphone: Mutes/unmutes the default recording device (microphone).',
+                loading: 'Loading...'
+            },
+            ru: {
+                muteType: 'Тип:',
+                system: 'Системный звук',
+                microphone: 'Микрофон',
+                info: 'Системный звук: Выключает/включает звук устройства воспроизведения (колонки/наушники).<br>Микрофон: Выключает/включает микрофон.',
+                loading: 'Загрузка...'
+            },
+            zh: {
+                muteType: '静音类型:',
+                system: '系统音量',
+                microphone: '麦克风',
+                info: '系统音量: 静音/取消静音默认播放设备（扬声器/耳机）。<br>麦克风: 静音/取消静音默认录音设备（麦克风）。',
+                loading: '加载中...'
+            }
+        };
+
+        const els = {
+            main: document.getElementById('main'),
+            loading: document.getElementById('loading'),
+            muteTypeLabel: document.getElementById('muteTypeLabel'),
+            muteTypeSystem: document.getElementById('muteTypeSystem'),
+            muteTypeSystemLabel: document.getElementById('muteTypeSystemLabel'),
+            muteTypeMicrophone: document.getElementById('muteTypeMicrophone'),
+            muteTypeMicrophoneLabel: document.getElementById('muteTypeMicrophoneLabel'),
+            infoText: document.getElementById('infoText')
+        };
+
+        function setLanguage(langCode) {
+            langCode = (langCode || 'en').toLowerCase();
+            language = langCode.startsWith('ru') ? 'ru' : langCode.startsWith('zh') ? 'zh' : 'en';
+            const loc = localization[language];
+            els.muteTypeLabel.textContent = loc.muteType;
+            els.muteTypeSystemLabel.textContent = loc.system;
+            els.muteTypeMicrophoneLabel.textContent = loc.microphone;
+            els.infoText.innerHTML = loc.info;
+            els.loading.textContent = loc.loading;
+        }
+
+        function updateUIFromSettings() {
+            const muteType = settings.muteType || 'system';
+            els.muteTypeSystem.checked = muteType === 'system';
+            els.muteTypeMicrophone.checked = muteType === 'microphone';
+        }
+
+        function connectElgatoStreamDeckSocket(port, propertyInspectorUUID, registerEvent, info, actionInfoStr) {
+            uuid = propertyInspectorUUID;
+            actionInfo = JSON.parse(actionInfoStr);
+            settings = actionInfo.payload.settings || {};
+
+            try {
+                const infoObj = JSON.parse(info);
+                setLanguage(infoObj.application?.language || navigator.language);
+            } catch (e) {
+                setLanguage(navigator.language);
+            }
+
+            updateUIFromSettings();
+
+            websocket = new WebSocket('ws://127.0.0.1:' + port);
+            websocket.onopen = function() {
+                websocket.send(JSON.stringify({ event: registerEvent, uuid: uuid }));
+                els.loading.style.display = 'none';
+                els.main.style.display = 'flex';
+            };
+            websocket.onmessage = function(evt) {
+                try {
+                    const data = JSON.parse(evt.data);
+                    if (data.event === 'didReceiveSettings') {
+                        settings = data.payload.settings || {};
+                        updateUIFromSettings();
+                    }
+                } catch (e) {}
+            };
+        }
+
+        function saveSettings() {
+            settings.muteType = els.muteTypeSystem.checked ? 'system' : 'microphone';
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+                websocket.send(JSON.stringify({ event: 'setSettings', context: uuid, payload: settings }));
+            }
+        }
+
+        els.muteTypeSystem.addEventListener('change', saveSettings);
+        els.muteTypeMicrophone.addEventListener('change', saveSettings);
+    </script>
+</body>
+</html>

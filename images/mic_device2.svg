@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="mic_x5F_device2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 144 144">
+  <defs>
+    <style>
+      .f {
+        fill: url(#c);
+      }
+
+      .g {
+        fill: url(#d);
+      }
+
+      .h {
+        fill: url(#e);
+      }
+
+      .i {
+        fill: url(#b);
+      }
+    </style>
+    <linearGradient id="b" data-name="Безымянный градиент 12" x1="-181.73" y1="327.73" x2="-180.73" y2="326.73" gradientTransform="translate(26169 47193) scale(144 -144)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#283593"/>
+      <stop offset="1" stop-color="#0d1545"/>
+    </linearGradient>
+    <linearGradient id="c" data-name="Безымянный градиент 11" x1="-177.75" y1="325.57" x2="-176.75" y2="324.57" gradientTransform="translate(6449 17603) scale(36 -54)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ce93d8"/>
+      <stop offset="1" stop-color="#ab47bc"/>
+    </linearGradient>
+    <linearGradient id="d" data-name="Безымянный градиент 36" x1="65.09" y1="79.91" x2="76.74" y2="68.26" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ab47bc"/>
+      <stop offset="1" stop-color="#ab47bc"/>
+    </linearGradient>
+    <linearGradient id="e" data-name="Безымянный градиент 36" x1="96" y1="116" x2="120" y2="116" xlink:href="#d"/>
+  </defs>
+  <rect class="i" x="0" y="0" width="144" height="144" rx="35" ry="35"/>
+  <path class="f" d="M68,22h0c9.94,0,18,8.06,18,18v18c0,9.94-8.06,18-18,18h0c-9.94,0-18-8.06-18-18v-18c0-9.94,8.06-18,18-18Z"/>
+  <path class="g" d="M98,53c-1.66,0-3,1.34-3,3v12c0,14.13-12.87,27-27,27s-27-12.87-27-27v-12c0-1.66-1.34-3-3-3s-3,1.34-3,3v12c0,16.57,13.7,31.22,30,32.84v8.16h-13c-1.66,0-3,1.34-3,3s1.34,3,3,3h32c1.66,0,3-1.34,3-3s-1.34-3-3-3h-13v-8.16c16.3-1.63,30-16.27,30-32.84v-12c0-1.66-1.34-3-3-3Z"/>
+  <path class="h" d="M108,104c-6.63,0-12,5.37-12,12s5.37,12,12,12,12-5.37,12-12-5.37-12-12-12ZM111.64,119.71v2.04h-7.7c.08-.77.33-1.5.75-2.19.42-.69,1.24-1.61,2.47-2.75.99-.92,1.6-1.55,1.82-1.88.3-.45.45-.9.45-1.34,0-.49-.13-.87-.39-1.13-.26-.26-.63-.39-1.09-.39s-.82.14-1.09.41c-.27.28-.43.73-.47,1.38l-2.19-.22c.13-1.21.54-2.08,1.23-2.6s1.55-.79,2.58-.79c1.13,0,2.02.3,2.66.91.65.61.97,1.37.97,2.27,0,.52-.09,1.01-.28,1.47-.19.47-.48.95-.88,1.46-.27.34-.75.83-1.44,1.46-.69.64-1.13,1.06-1.32,1.27-.19.21-.33.41-.45.61h4.36Z"/>
+</svg>

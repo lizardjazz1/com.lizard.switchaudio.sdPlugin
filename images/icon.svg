@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 144 144">
+  <defs>
+    <style>
+      .g {
+        fill: #fff;
+      }
+
+      .h {
+        fill: url(#c);
+      }
+
+      .i {
+        fill: url(#e);
+      }
+
+      .j {
+        fill: #1a0a2e;
+        opacity: .6;
+      }
+
+      .j, .k {
+        isolation: isolate;
+      }
+
+      .l {
+        fill: url(#b);
+      }
+
+      .k {
+        fill: url(#f);
+        opacity: .5;
+      }
+    </style>
+    <linearGradient id="b" data-name="Безымянный градиент" x1="-363.46" y1="2.54" x2="-362.46" y2="3.54" gradientTransform="translate(52338 -366) scale(144)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a1a2e"/>
+      <stop offset="1" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="c" data-name="Безымянный градиент 2" x1="21.8" y1="58.72" x2="94.1" y2="131.03" gradientTransform="translate(0 146) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4fc3f7"/>
+      <stop offset="1" stop-color="#0288d1"/>
+    </linearGradient>
+    <linearGradient id="e" data-name="Безымянный градиент 5" x1="-533.82" y1="322.2" x2="-532.82" y2="321.2" gradientTransform="translate(19295 25795) scale(36 -80)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ce93d8"/>
+      <stop offset="1" stop-color="#ba68c8"/>
+    </linearGradient>
+    <linearGradient id="f" data-name="Безымянный градиент 5" x1="-514.92" y1="295.09" x2="-513.92" y2="294.09" gradientTransform="translate(8325 4785) scale(16 -16)" xlink:href="#e"/>
+  </defs>
+  <rect class="l" width="144" height="144" rx="20" ry="20"/>
+  <path class="g" d="M101.61,121.66c.05-.07.08-.14.12-.22.05-.1.11-.19.16-.3.04-.1.06-.2.09-.3.03-.09.06-.17.08-.26.08-.39.08-.79,0-1.17-.02-.09-.05-.17-.08-.26-.03-.1-.05-.2-.09-.3-.04-.11-.1-.2-.16-.3-.04-.07-.07-.15-.12-.22-.11-.17-.24-.32-.38-.46l-12.05-12.05c-1.17-1.17-3.07-1.17-4.24,0s-1.17,3.07,0,4.24l6.93,6.93h-39.74l6.93-6.93c1.17-1.17,1.17-3.07,0-4.24s-3.07-1.17-4.24,0l-12.05,12.05c-.14.14-.27.29-.38.46-.05.07-.08.15-.12.22-.05.1-.11.19-.15.29s-.06.2-.09.3c-.03.09-.06.17-.08.26-.08.39-.08.79,0,1.18.02.09.05.17.08.26.03.1.05.2.09.3.04.1.1.2.15.29.04.07.07.15.12.22.11.17.24.32.38.46l12.05,12.05c.59.59,1.35.88,2.12.88s1.54-.29,2.12-.88c1.17-1.17,1.17-3.07,0-4.24l-6.93-6.93h39.74l-6.93,6.93c-1.17,1.17-1.17,3.07,0,4.24.59.59,1.35.88,2.12.88s1.54-.29,2.12-.88l12.05-12.05c.14-.14.27-.3.38-.46h0Z"/>
+  <path class="h" d="M30.26,59.89v23.19c0,6.38,5.22,11.59,11.59,11.59h6.96c2.56,0,4.64-2.08,4.64-4.64v-23.19c0-2.56-2.08-4.64-4.64-4.64v-4.64c0-12.75,10.43-23.19,23.19-23.19v-16.22c-23.19,0-41.74,18.55-41.74,41.74Z"/>
+  <g id="d" data-name="b">
+    <rect class="i" x="76.89" y="18.15" width="36" height="80" rx="6" ry="6"/>
+    <circle class="j" cx="94.89" cy="40.15" r="8"/>
+    <circle class="j" cx="94.89" cy="72.15" r="14"/>
+    <circle class="k" cx="94.89" cy="72.15" r="8"/>
+  </g>
+</svg>

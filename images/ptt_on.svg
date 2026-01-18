@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="ptt_x5F_on" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 144 144">
+  <defs>
+    <style>
+      .g {
+        fill: url(#c);
+      }
+
+      .h {
+        fill: url(#d);
+      }
+
+      .i {
+        fill: url(#e);
+      }
+
+      .j {
+        fill: url(#f);
+      }
+
+      .k {
+        fill: url(#b);
+      }
+    </style>
+    <linearGradient id="b" data-name="Безымянный градиент 43" x1="-181.73" y1="327.73" x2="-180.73" y2="326.73" gradientTransform="translate(26169 47193) scale(144 -144)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a3a1a"/>
+      <stop offset="1" stop-color="#0d2e0d"/>
+    </linearGradient>
+    <linearGradient id="c" data-name="Безымянный градиент 7" x1="-177.28" y1="325.73" x2="-176.28" y2="324.73" gradientTransform="translate(5729 18269) scale(32 -56)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6f6"/>
+      <stop offset="1" stop-color="#0c0"/>
+    </linearGradient>
+    <linearGradient id="d" data-name="Безымянный градиент 7" x1="69.04" y1="86.96" x2="80.89" y2="75.11" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#c"/>
+    <linearGradient id="e" data-name="Безымянный градиент 7" x1="-141.83" y1="322.99" x2="-141.49" y2="322.65" gradientTransform="translate(664 10401) scale(4.5 -32)" xlink:href="#c"/>
+    <linearGradient id="f" data-name="Безымянный градиент 7" x1="-142.18" y1="322.92" x2="-141.84" y2="322.57" gradientTransform="translate(756.5 10401) scale(4.5 -32)" xlink:href="#c"/>
+  </defs>
+  <rect class="k" x="0" y="0" width="144" height="144" rx="35" ry="35"/>
+  <path class="g" d="M72,28h0c8.84,0,16,7.16,16,16v24c0,8.84-7.16,16-16,16h0c-8.84,0-16-7.16-16-16v-24c0-8.84,7.16-16,16-16Z"/>
+  <path class="h" d="M100,57c-1.66,0-3,1.34-3,3v16c0,13.79-11.21,25-25,25s-25-11.21-25-25v-16c0-1.66-1.34-3-3-3s-3,1.34-3,3v16c0,16.08,12.31,29.34,28,30.85v10.15h-13c-1.66,0-3,1.34-3,3s1.34,3,3,3h32c1.66,0,3-1.34,3-3s-1.34-3-3-3h-13v-10.15c15.69-1.51,28-14.77,28-30.85v-16c0-1.66-1.34-3-3-3Z"/>
+  <path class="i" d="M28,90c-.61,0-1.21-.28-1.6-.8-6.51-8.68-6.51-25.72,0-34.4.66-.88,1.92-1.06,2.8-.4.88.66,1.06,1.92.4,2.8-5.5,7.33-5.5,22.27,0,29.6.66.88.48,2.14-.4,2.8-.36.27-.78.4-1.2.4Z"/>
+  <path class="j" d="M116,90c-.42,0-.84-.13-1.2-.4-.88-.66-1.06-1.92-.4-2.8,5.5-7.33,5.5-22.27,0-29.6-.66-.88-.48-2.14.4-2.8.89-.66,2.14-.48,2.8.4,6.51,8.68,6.51,25.72,0,34.4-.39.52-.99.8-1.6.8Z"/>
+</svg>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Set Volume Settings</title>
+    <style>
+        * { box-sizing: border-box; user-select: none; outline: none; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 11px;
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 12px;
+            width: 438px;
+            height: 195px;
+        }
+        .container { display: none; flex-direction: column; gap: 12px; }
+        .row { display: flex; align-items: center; gap: 12px; }
+        .label { font-weight: 500; color: #ddd; min-width: 100px; }
+        .slider-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="range"] {
+            flex: 1;
+            height: 6px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #4fc3f7;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .volume-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+            color: #4fc3f7;
+            font-size: 14px;
+        }
+        .presets {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .preset-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 6px 12px;
+            cursor: pointer;
+            color: #ccc;
+            font-size: 10px;
+            transition: all 0.2s;
+        }
+        .preset-btn:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .preset-btn.active {
+            background: #4fc3f7;
+            border-color: #4fc3f7;
+            color: #fff;
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 10px;
+            color: #aaa;
+            line-height: 1.4;
+        }
+        .loading {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <label class="label" id="volumeLabel">Volume:</label>
+            <div class="slider-container">
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                <span class="volume-value" id="volumeValue">50%</span>
+            </div>
+        </div>
+        <div class="row">
+            <label class="label" id="presetsLabel">Presets:</label>
+            <div class="presets">
+                <button class="preset-btn" data-value="0">0%</button>
+                <button class="preset-btn" data-value="25">25%</button>
+                <button class="preset-btn" data-value="50">50%</button>
+                <button class="preset-btn" data-value="75">75%</button>
+                <button class="preset-btn" data-value="100">100%</button>
+            </div>
+        </div>
+        <div class="info" id="infoText">
+            Press the button to set system volume to this level.
+        </div>
+    </div>
+    <div class="loading" id="loading">Loading...</div>
+
+    <script>
+        let websocket = null, uuid = null, actionInfo = null, settings = {}, language = 'en';
+
+        const localization = {
+            en: {
+                volume: 'Volume:',
+                presets: 'Presets:',
+                info: 'Press the button to set system volume to this level.',
+                loading: 'Loading...'
+            },
+            ru: {
+                volume: 'Громкость:',
+                presets: 'Пресеты:',
+                info: 'Нажмите кнопку, чтобы установить системную громкость на этот уровень.',
+                loading: 'Загрузка...'
+            },
+            zh: {
+                volume: '音量:',
+                presets: '预设:',
+                info: '按下按钮将系统音量设置为此级别。',
+                loading: '加载中...'
+            }
+        };
+
+        const els = {
+            main: document.getElementById('main'),
+            loading: document.getElementById('loading'),
+            volumeLabel: document.getElementById('volumeLabel'),
+            volumeSlider: document.getElementById('volumeSlider'),
+            volumeValue: document.getElementById('volumeValue'),
+            presetsLabel: document.getElementById('presetsLabel'),
+            infoText: document.getElementById('infoText')
+        };
+
+        const presetBtns = document.querySelectorAll('.preset-btn');
+
+        function setLanguage(langCode) {
+            langCode = (langCode || 'en').toLowerCase();
+            language = langCode.startsWith('ru') ? 'ru' : langCode.startsWith('zh') ? 'zh' : 'en';
+            const loc = localization[language];
+            els.volumeLabel.textContent = loc.volume;
+            els.presetsLabel.textContent = loc.presets;
+            els.infoText.textContent = loc.info;
+            els.loading.textContent = loc.loading;
+        }
+
+        function updateUIFromSettings() {
+            const volume = settings.targetVolume !== undefined ? settings.targetVolume : 50;
+            els.volumeSlider.value = volume;
+            els.volumeValue.textContent = volume + '%';
+            updatePresetButtons(volume);
+        }
+
+        function updatePresetButtons(value) {
+            presetBtns.forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.value) === value);
+            });
+        }
+
+        function connectElgatoStreamDeckSocket(port, propertyInspectorUUID, registerEvent, info, actionInfoStr) {
+            uuid = propertyInspectorUUID;
+            actionInfo = JSON.parse(actionInfoStr);
+            settings = actionInfo.payload.settings || {};
+
+            try {
+                const infoObj = JSON.parse(info);
+                setLanguage(infoObj.application?.language || navigator.language);
+            } catch (e) {
+                setLanguage(navigator.language);
+            }
+
+            updateUIFromSettings();
+
+            websocket = new WebSocket('ws://127.0.0.1:' + port);
+            websocket.onopen = function() {
+                websocket.send(JSON.stringify({ event: registerEvent, uuid: uuid }));
+                els.loading.style.display = 'none';
+                els.main.style.display = 'flex';
+            };
+            websocket.onmessage = function(evt) {
+                try {
+                    const data = JSON.parse(evt.data);
+                    if (data.event === 'didReceiveSettings') {
+                        settings = data.payload.settings || {};
+                        updateUIFromSettings();
+                    }
+                } catch (e) {}
+            };
+        }
+
+        function saveSettings() {
+            settings.targetVolume = parseInt(els.volumeSlider.value);
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+                websocket.send(JSON.stringify({ event: 'setSettings', context: uuid, payload: settings }));
+            }
+        }
+
+        els.volumeSlider.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            els.volumeValue.textContent = value + '%';
+            updatePresetButtons(value);
+        });
+
+        els.volumeSlider.addEventListener('change', saveSettings);
+
+        presetBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const value = parseInt(this.dataset.value);
+                els.volumeSlider.value = value;
+                els.volumeValue.textContent = value + '%';
+                updatePresetButtons(value);
+                saveSettings();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{
+  "Name": "Audio Switch Pro",
+  "Description": "Переключение основного и коммуникационного аудиоустройства одним нажатием (устанавливает устройство для звонков, Discord, Teams и т.д.)",
+  "Category": "Аудио",
+  "com.lizard.switchaudio.toggle": {
+    "Name": "Переключить аудио",
+    "Tooltip": "Переключение между двумя аудиоустройствами (Default + Communication)"
+  },
+  "com.lizard.switchaudio.mute": {
+    "Name": "Mute/Unmute",
+    "Tooltip": "Переключить заглушку системной громкости"
+  },
+  "com.lizard.switchaudio.volumeup": {
+    "Name": "Громче",
+    "Tooltip": "Увеличить системную громкость"
+  },
+  "com.lizard.switchaudio.volumedown": {
+    "Name": "Тише",
+    "Tooltip": "Уменьшить системную громкость"
+  },
+  "com.lizard.switchaudio.appvolumeup": {
+    "Name": "Громче приложение",
+    "Tooltip": "Увеличить громкость активного приложения"
+  },
+  "com.lizard.switchaudio.appvolumedown": {
+    "Name": "Тише приложение",
+    "Tooltip": "Уменьшить громкость активного приложения"
+  },
+  "com.lizard.switchaudio.setvolume": {
+    "Name": "Установить громкость",
+    "Tooltip": "Установить системную громкость на определённый уровень"
+  },
+  "com.lizard.switchaudio.playpause": {
+    "Name": "Воспроизведение / Пауза",
+    "Tooltip": "Воспроизвести / приостановить"
+  },
+  "com.lizard.switchaudio.medianext": {
+    "Name": "Следующий трек",
+    "Tooltip": "Перейти к следующему треку"
+  },
+  "com.lizard.switchaudio.mediaprev": {
+    "Name": "Предыдущий трек",
+    "Tooltip": "Перейти к предыдущему треку"
+  },
+  "com.lizard.switchaudio.pushtotalk": {
+    "Name": "Push to Talk",
+    "Tooltip": "Удерживай для разговора, отпусти для mute"
+  },
+  "com.lizard.switchaudio.soundsettings": {
+    "Name": "Настройки звука",
+    "Tooltip": "Открыть настройки звука Windows"
+  },
+  "Localization": {
+    "Primary Device": "Основное устройство",
+    "Secondary Device": "Дополнительное устройство",
+    "Refresh Devices": "Обновить список"
+  }
+}
